@@ -16,18 +16,14 @@ public class CuentaBancaria {
     private String nombreTitular;
     private double saldo;
     private boolean activa;
+    private int cantidadMovimientos;
 
     public CuentaBancaria(String numeroCuenta, String nombreTitular, double saldoInicial) {
         this.numeroCuenta = numeroCuenta;
         this.nombreTitular = nombreTitular;
-        
-        if (saldoInicial < 0) {
-            this.saldo = 0.0; 
-        } else {
-            this.saldo = saldoInicial;
-        }
-        
+        this.saldo = saldoInicial;    
         this.activa = true;
+        this.cantidadMovimientos = 0;
     }
     
     // Getters 
@@ -47,6 +43,10 @@ public class CuentaBancaria {
         return activa;
     }
     
+    public int getCantidadMovimientos(){
+        return cantidadMovimientos; 
+    }
+    
     // Metodo consignar
     
     public boolean consignar(double cantidad){
@@ -63,6 +63,8 @@ public class CuentaBancaria {
         }
         
         saldo += cantidad;
+        cantidadMovimientos += 1;
+
         //
         
         return true;  
@@ -88,6 +90,7 @@ public class CuentaBancaria {
         }
         
         saldo -= cantidad;
+        cantidadMovimientos += 1;
         //JOptionPane.showMessageDialog(null,"El nuevo saldo es: $" + saldo);
         
         return true;  
@@ -114,19 +117,17 @@ public class CuentaBancaria {
                Saldo disponible: $%.2f
                Estado: %s
                Clasificación: %s
-               """.formatted(numeroCuenta, nombreTitular, saldo, (activa ? "Activa" : "Inactiva" ), obtenerTipoSaldo());
+               Cantidad de movimientos: %d
+               """.formatted(numeroCuenta, nombreTitular, saldo, (activa ? "Activa" : "Inactiva" ), obtenerTipoSaldo(), getCantidadMovimientos());
     }
     
     //Metodo desactivar cuenta
     public void desactivarCuenta(){
         
-        //activa = false;
+        activa = false;
         
-        if(activa){
-            activa = false;
-        }else{
-         JOptionPane.showMessageDialog(null, "La cuenta ya esta desactiva");
-        }
+        
+        
         
     }
 }

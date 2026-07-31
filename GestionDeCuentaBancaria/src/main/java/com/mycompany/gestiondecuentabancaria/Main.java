@@ -35,6 +35,7 @@ public class Main {
         CuentaBancaria cuenta = new CuentaBancaria(numeroCuenta,nombreTitular,saldoInicial);
         
         int option = 0;
+        double cantidad;
         
         do{
         
@@ -61,29 +62,44 @@ public class Main {
                     break;
                     
                 case 2:
-                        double cantidad=Double.parseDouble(JOptionPane.showInputDialog("Ingrese el saldo a consignar: "));
+                    
+                    if(cuenta.isActiva()){
+                        JOptionPane.showMessageDialog(null,"La cuenta esta desactivada, no se puede consignar","Aviso",JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+                    
+                    cantidad=Double.parseDouble(JOptionPane.showInputDialog("Ingrese el saldo a consignar: "));
 
-                        boolean resultado = cuenta.consignar(cantidad);
+                    boolean resultado = cuenta.consignar(cantidad);
 
-                        if(resultado){
-                            JOptionPane.showMessageDialog(null,"Consignación realizada correctamente");
-                        }else{
-                            JOptionPane.showMessageDialog(null,"No fue posible realizar la consignación."); 
-                        }
-                  
+                    if(resultado){
+                        JOptionPane.showMessageDialog(null,"Consignación realizada correctamente");
+                    }else{
+                        JOptionPane.showMessageDialog(null,"No fue posible realizar la consignación."); 
+                    }
+                    
                     break;
                     
                 case 3:
                     
-                    double cantidadRetirar=Double.parseDouble(JOptionPane.showInputDialog("Ingrese el saldo a retirar: "));
                     
-                    boolean resultadoRetirar = cuenta.retirar(cantidadRetirar);
                     
+                    if(!cuenta.isActiva()){
+                        JOptionPane.showMessageDialog(null,"La cuenta esta desactivada, no se puede retirar","Aviso",JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+                        
+                    cantidad=Double.parseDouble(JOptionPane.showInputDialog("Ingrese el saldo a retirar: "));
+
+                    boolean resultadoRetirar = cuenta.retirar(cantidad);
+
                     if(resultadoRetirar){
                         JOptionPane.showMessageDialog(null,"Retiro realizado correctamente.");
                     }else{
                         JOptionPane.showMessageDialog(null,"No fue posible realizar el retiro."); 
                     }
+                    
+                      
                     break;
                     
                 case 4:
@@ -106,11 +122,11 @@ public class Main {
                     
                 case 6:
                     
-                    JOptionPane.showMessageDialog(null, "Gracias por usar Banco Riwi. ¡Hasta luego!");
+                    JOptionPane.showMessageDialog(null, "Gracias por usar Banco Riwi. ¡Hasta luego!","Aviso",JOptionPane.PLAIN_MESSAGE);
                     break;
                     
                 default:
-                    JOptionPane.showMessageDialog(null, "Opción no válida. Digite un número entre 1 y 6.");
+                    JOptionPane.showMessageDialog(null, "Opción no válida. Digite un número entre 1 y 6.", "Error",JOptionPane.ERROR_MESSAGE);
            }
             
         } while (option != 6);
