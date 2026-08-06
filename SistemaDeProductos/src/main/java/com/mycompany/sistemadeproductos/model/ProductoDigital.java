@@ -23,27 +23,52 @@ public class ProductoDigital extends Producto{
     public double calcularPrecioFinal() {
         
         double precioFinal;
+        double descuento;
         
-        // Condicion para calcular el precio final con descuento
+        // Condicion para calcular el precio final con descuento del 5%
         
-        if(peso > 10){
+        if(tamañoArchivo > 5){
             
-        double recargo = getPrecioBase() * 0.08;    
+        descuento = getPrecioBase() * 0.05;    
             
-        precioFinal = getPrecioBase() + costoEnvio + recargo;
+        precioFinal = getPrecioBase() - descuento;
         
         return precioFinal;
         }
         
-        // Calcular precio final
+        // Calcular precio final con descuento del 10%
         
-        precioFinal = getPrecioBase() + costoEnvio;
+        descuento = getPrecioBase() * 0.10;
+        
+        precioFinal = getPrecioBase() - descuento ;
         
         return precioFinal;
     }
+
     
     
+    // Getters y Setters
     
+    // Tamaño del Archivo
+    
+    public double getTamañoArchivo() {
+        return tamañoArchivo;
+    }
+    public void setTamañoArchivo(double tamañoArchivo) {
+        this.tamañoArchivo = tamañoArchivo;
+    }
+
+    // Formato del archivo
+    
+    public String getFormato() {
+        return formato;
+    }
+
+
+    public void setFormato(String formato) {
+        this.formato = formato;
+    }
+
     
     
 }

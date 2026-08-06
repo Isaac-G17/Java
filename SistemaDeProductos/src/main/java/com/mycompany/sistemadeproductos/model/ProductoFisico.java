@@ -17,7 +17,7 @@ public class ProductoFisico extends Producto{
 
     // Constructor
     
-    public ProductoFisico(String codigo, String nombre, double precioBase, int cantidadDisponible, boolean activo,double peso, double costoEnvio) {
+    public ProductoFisico(String codigo, String nombre, double precioBase, int cantidadDisponible,boolean activo, double peso, double costoEnvio) {
         super(codigo, nombre, precioBase, cantidadDisponible, activo);
         this.peso = peso;
         this.costoEnvio = costoEnvio;
@@ -48,6 +48,8 @@ public class ProductoFisico extends Producto{
         return precioFinal;
     }
 
+    
+    
     // Getters y Setters
  
     // Peso
@@ -68,6 +70,7 @@ public class ProductoFisico extends Producto{
         this.costoEnvio = costoEnvio;
     }
 
+
     
-    
+
 }

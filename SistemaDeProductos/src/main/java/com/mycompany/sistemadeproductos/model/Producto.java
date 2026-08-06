@@ -18,7 +18,7 @@ public abstract class Producto {
     private boolean activo;
 
     // Contructor 
-    public Producto(String codigo, String nombre, double precioBase, int cantidadDisponible, boolean activo) {
+    public Producto(String codigo, String nombre, double precioBase, int cantidadDisponible,boolean activo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precioBase = precioBase;
@@ -32,9 +32,6 @@ public abstract class Producto {
 
     public String getCodigo() {
         return codigo;
-    }
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     // Nombre
@@ -82,8 +79,7 @@ public abstract class Producto {
     
     public String mostrarInformacion(){
         return "";
-    };
-
+    }
     
     // Método Calcular valor inventario
     
