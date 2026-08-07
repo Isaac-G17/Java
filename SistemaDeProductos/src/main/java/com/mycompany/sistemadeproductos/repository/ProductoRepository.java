@@ -49,16 +49,26 @@ public class ProductoRepository {
 
     public boolean eliminarPorCodigo(String codigo) {
 
-        for (int i = 0; i < productos.size(); i++) {
+        Producto producto = buscarPorCodigo(codigo);
 
-            if (productos.get(i).getCodigo().equals(codigo)) {
-                productos.remove(i);
-                return true;
-            }
-
+        if (producto != null) {
+            productos.remove(producto);
+            return true;
         }
 
         return false;
+    }
+
+    public boolean existeCodigo(String codigo) {
+
+        Producto producto = buscarPorCodigo(codigo);
+
+        if (producto != null) {
+            return true;
+        }
+
+        return false;
+
     }
 
 }
