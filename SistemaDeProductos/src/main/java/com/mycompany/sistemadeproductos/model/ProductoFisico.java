@@ -17,8 +17,8 @@ public class ProductoFisico extends Producto{
 
     // Constructor
     
-    public ProductoFisico(String codigo, String nombre, double precioBase, int cantidadDisponible,boolean activo, double peso, double costoEnvio) {
-        super(codigo, nombre, precioBase, cantidadDisponible, activo);
+    public ProductoFisico(String codigo, String nombre, double precioBase, int cantidadDisponible, double peso, double costoEnvio) {
+        super(codigo, nombre, precioBase, cantidadDisponible);
         this.peso = peso;
         this.costoEnvio = costoEnvio;
     }

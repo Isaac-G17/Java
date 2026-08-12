@@ -18,12 +18,12 @@ public abstract class Producto {
     private boolean activo;
 
     // Contructor 
-    public Producto(String codigo, String nombre, double precioBase, int cantidadDisponible,boolean activo) {
+    public Producto(String codigo, String nombre, double precioBase, int cantidadDisponible) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precioBase = precioBase;
         this.cantidadDisponible = cantidadDisponible;
-        this.activo = activo;
+        this.activo = true;
     }
     
     // Getters y Setters 

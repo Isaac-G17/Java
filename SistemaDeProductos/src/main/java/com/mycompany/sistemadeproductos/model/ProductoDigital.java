@@ -13,8 +13,8 @@ public class ProductoDigital extends Producto{
     private double tamañoArchivo;
     private String formato;
 
-    public ProductoDigital(String codigo, String nombre, double precioBase, int cantidadDisponible, boolean activo, double tamañoArchivo, String formato){
-        super(codigo, nombre, precioBase, cantidadDisponible, activo);
+    public ProductoDigital(String codigo, String nombre, double precioBase, int cantidadDisponible, double tamañoArchivo, String formato){
+        super(codigo, nombre, precioBase, cantidadDisponible);
         this.tamañoArchivo = tamañoArchivo;
         this.formato = formato;
     }

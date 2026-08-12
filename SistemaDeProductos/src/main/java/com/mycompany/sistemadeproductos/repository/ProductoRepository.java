@@ -6,7 +6,6 @@ package com.mycompany.sistemadeproductos.repository;
 
 import com.mycompany.sistemadeproductos.model.Producto;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  *
@@ -69,6 +68,22 @@ public class ProductoRepository {
 
         return false;
 
+    }
+
+    public void actualizar(Producto producto) {
+
+        Producto productoExistente = buscarPorCodigo(producto.getCodigo());
+
+        if (productoExistente != null) {
+
+            int indice = productos.indexOf(productoExistente);
+
+            productos.set(indice, producto);
+        }
+    }
+
+    public int obtenerCantidad() {
+        return productos.size();
     }
 
 }
