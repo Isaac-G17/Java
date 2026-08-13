@@ -119,6 +119,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Productos.add(BuscarProducto);
 
         ActualizarProducto.setText("Actualizar producto");
+        ActualizarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarProductoActionPerformed(evt);
+            }
+        });
         Productos.add(ActualizarProducto);
 
         EliminarProducto.setText("Eliminar producto");
@@ -157,6 +162,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void BuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarProductoActionPerformed
         // TODO add your handling code here:
+        BuscarProducto ventana = new BuscarProducto(productoController);
+        ventana.setVisible(true);
     }//GEN-LAST:event_BuscarProductoActionPerformed
 
     private void RegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarProductoActionPerformed
@@ -178,6 +185,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             listarProductos.toFront();
         }
     }//GEN-LAST:event_ListarProductosActionPerformed
+
+    private void ActualizarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarProductoActionPerformed
+        // TODO add your handling code here:
+        ActualizarProductos ventana = new ActualizarProductos(productoController,listarProductos);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_ActualizarProductoActionPerformed
 
     /**
      * @param args the command line arguments

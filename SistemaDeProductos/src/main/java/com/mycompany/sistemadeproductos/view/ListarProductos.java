@@ -134,7 +134,7 @@ public class ListarProductos extends javax.swing.JFrame {
                 producto.getPrecioBase(),
                 precioFinal,
                 producto.getCantidadDisponible(),
-                producto.isActivo()
+                producto.isActivo() ? "Activo" : "Inactivo"
             });
         }
     }
