@@ -19,6 +19,10 @@ public class ProductoController {
     public ProductoController(ProductoService productoService) {
         this.productoService = productoService;
     }
+    
+    public void cargarDatosIniciales() {
+        productoService.cargarDatosIniciales();
+    }
 
     // Registrar producto
     public void registrarProducto(Producto producto) {
@@ -44,17 +48,37 @@ public class ProductoController {
     public void eliminarProducto(String codigo) {
         productoService.eliminarProducto(codigo);
     }
-
-    public String consultarEstadisticas() {
-        int cantidadProductos = productoService.obtenerCantidadProductos();
-        double valorInventario = productoService.calcularValorTotalInventario();
-
-        return """
-                ===== ESTADÍSTICAS DEL INVENTARIO =====
-
-                Cantidad de productos: %d
-                Valor total del inventario: $%.2f
-                """.formatted(cantidadProductos, valorInventario);
-
+    
+    
+    public int obtenerCantidadProductos(){
+        return productoService.obtenerCantidadProductos();
+    }
+    
+    public int obtenerCantidadProductosFisicos() {
+        return productoService.obtenerCantidadProductosFisicos();
+    }
+    
+    public int obtenerCantidadProductosDigitales() {
+        return productoService.obtenerCantidadProductosDigitales();
+    }
+    
+    public int obtenerCantidadProductosActivos() {
+        return productoService.obtenerCantidadProductosActivos();
+    }
+    
+    public int obtenerCantidadProductosInactivos() {
+        return productoService.obtenerCantidadProductosInactivos();
+    }
+    
+    public Producto obtenerProductoMayorPrecio() {
+        return productoService.obtenerProductoMayorPrecio();
+    }
+    
+    public Producto obtenerProductoMenorPrecio() {
+        return productoService.obtenerProductoMenorPrecio();
+    }
+    
+    public double calcularValorTotalInventario(){
+        return productoService.calcularValorTotalInventario();
     }
 }

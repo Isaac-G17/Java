@@ -17,14 +17,14 @@ import javax.swing.JOptionPane;
 public class RegistrarProducto extends javax.swing.JFrame {
 
     private ProductoController productoController;
-    private ListarProductos listarProductos;
+    private Inventario listarProductos;
 
     /**
      * Creates new form RegistrarProducto
      *
      * @param productoController
      */
-    public RegistrarProducto(ProductoController productoController, ListarProductos listarProductos) {
+    public RegistrarProducto(ProductoController productoController, Inventario listarProductos) {
         initComponents();
         setLocationRelativeTo(null);
         this.productoController = productoController;

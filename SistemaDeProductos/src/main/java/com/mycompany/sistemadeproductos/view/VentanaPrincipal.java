@@ -15,7 +15,7 @@ import com.mycompany.sistemadeproductos.service.ProductoService;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private ProductoController productoController;
-    private ListarProductos listarProductos;
+    private Inventario listarProductos;
 
     /**
      * Creates new form VentanaPrincipal
@@ -26,6 +26,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ProductoRepository repository = new ProductoRepository();
         ProductoService service = new ProductoService(repository);
         productoController = new ProductoController(service);
+        productoController.cargarDatosIniciales();
     }
 
     /**
@@ -45,11 +46,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Salir = new javax.swing.JMenuItem();
         Productos = new javax.swing.JMenu();
         RegistrarProducto = new javax.swing.JMenuItem();
-        ListarProductos = new javax.swing.JMenuItem();
         BuscarProducto = new javax.swing.JMenuItem();
         ActualizarProducto = new javax.swing.JMenuItem();
         EliminarProducto = new javax.swing.JMenuItem();
         Inventario = new javax.swing.JMenu();
+        InventarioProductos = new javax.swing.JMenuItem();
         resumen = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,6 +89,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Sistema.setText("Sistema");
 
         Salir.setText("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
         Sistema.add(Salir);
 
         jMenuBar1.add(Sistema);
@@ -101,14 +107,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         Productos.add(RegistrarProducto);
-
-        ListarProductos.setText("Listar productos");
-        ListarProductos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListarProductosActionPerformed(evt);
-            }
-        });
-        Productos.add(ListarProductos);
 
         BuscarProducto.setText("Buscar producto");
         BuscarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -127,13 +125,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Productos.add(ActualizarProducto);
 
         EliminarProducto.setText("Eliminar producto");
+        EliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarProductoActionPerformed(evt);
+            }
+        });
         Productos.add(EliminarProducto);
 
         jMenuBar1.add(Productos);
 
         Inventario.setText("Inventario");
 
-        resumen.setText("Ver resumen del inventario");
+        InventarioProductos.setText("Inventario de productos");
+        InventarioProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InventarioProductosActionPerformed(evt);
+            }
+        });
+        Inventario.add(InventarioProductos);
+
+        resumen.setText("Resumen de inventario");
+        resumen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resumenActionPerformed(evt);
+            }
+        });
         Inventario.add(resumen);
 
         jMenuBar1.add(Inventario);
@@ -172,25 +188,43 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventana.setVisible(true);
     }//GEN-LAST:event_RegistrarProductoActionPerformed
 
-    private void ListarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarProductosActionPerformed
+    private void InventarioProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventarioProductosActionPerformed
         // TODO add your handling code here:
 
         if (listarProductos == null || !listarProductos.isDisplayable()) {
 
-            listarProductos = new ListarProductos(productoController);
+            listarProductos = new Inventario(productoController);
             listarProductos.setVisible(true);
 
         } else {
 
             listarProductos.toFront();
         }
-    }//GEN-LAST:event_ListarProductosActionPerformed
+    }//GEN-LAST:event_InventarioProductosActionPerformed
 
     private void ActualizarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarProductoActionPerformed
         // TODO add your handling code here:
         ActualizarProductos ventana = new ActualizarProductos(productoController,listarProductos);
         ventana.setVisible(true);
     }//GEN-LAST:event_ActualizarProductoActionPerformed
+
+    private void EliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarProductoActionPerformed
+        // TODO add your handling code here:
+        EliminarProducto ventana = new EliminarProducto(productoController, listarProductos);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_EliminarProductoActionPerformed
+
+    private void resumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resumenActionPerformed
+        // TODO add your handling code here:
+        ResumenInventario ventana = new ResumenInventario(productoController);
+        
+        ventana.setVisible(true);
+    }//GEN-LAST:event_resumenActionPerformed
+
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_SalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,11 +254,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaPrincipal().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -232,7 +266,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem BuscarProducto;
     private javax.swing.JMenuItem EliminarProducto;
     private javax.swing.JMenu Inventario;
-    private javax.swing.JMenuItem ListarProductos;
+    private javax.swing.JMenuItem InventarioProductos;
     private javax.swing.JMenu Productos;
     private javax.swing.JMenuItem RegistrarProducto;
     private javax.swing.JMenuItem Salir;

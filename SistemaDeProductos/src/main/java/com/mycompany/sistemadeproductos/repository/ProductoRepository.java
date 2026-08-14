@@ -69,7 +69,7 @@ public class ProductoRepository {
         return false;
 
     }
-
+    
     public void actualizar(Producto producto) {
 
         Producto productoExistente = buscarPorCodigo(producto.getCodigo());

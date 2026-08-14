@@ -18,14 +18,14 @@ public class ActualizarProductos extends javax.swing.JFrame {
 
     private ProductoController productoController;
     private Producto productoActual;
-    private ListarProductos listarProductos;
+    private Inventario listarProductos;
 
     /**
      * Creates new form ActualizarProductos
      * @param productoController
      * @param listarProductos
      */
-    public ActualizarProductos(ProductoController productoController, ListarProductos listarProductos) {
+    public ActualizarProductos(ProductoController productoController, Inventario listarProductos) {
         initComponents();
         setLocationRelativeTo(null);
 

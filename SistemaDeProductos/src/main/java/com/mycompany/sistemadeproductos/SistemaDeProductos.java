@@ -4,6 +4,8 @@
 
 package com.mycompany.sistemadeproductos;
 
+import com.mycompany.sistemadeproductos.view.VentanaPrincipal;
+
 /**
  *
  * @author cohorte5
@@ -11,6 +13,7 @@ package com.mycompany.sistemadeproductos;
 public class SistemaDeProductos {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        VentanaPrincipal ventana = new VentanaPrincipal();
+        ventana.setVisible(true);
     }
 }

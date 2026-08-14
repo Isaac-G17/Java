@@ -67,6 +67,50 @@ public class ProductoService {
 
     }
 
+    public void cargarDatosIniciales() {
+
+        ProductoFisico fisico1 = new ProductoFisico(
+                "F001",
+                "Computador portátil",
+                3500000,
+                4,
+                2.5,
+                35000
+        );
+
+        ProductoFisico fisico2 = new ProductoFisico(
+                "F002",
+                "Escritorio",
+                800000,
+                3,
+                25,
+                90000
+        );
+
+        ProductoDigital digital1 = new ProductoDigital(
+                "D001",
+                "Curso de Java",
+                120000,
+                50,
+                3.5,
+                "MP4"
+        );
+
+        ProductoDigital digital2 = new ProductoDigital(
+                "D002",
+                "Licencia de software",
+                450000,
+                15,
+                7,
+                "ZIP"
+        );
+
+        productoRepository.guardar(fisico1);
+        productoRepository.guardar(fisico2);
+        productoRepository.guardar(digital1);
+        productoRepository.guardar(digital2);
+    }
+
     public void registrarProducto(Producto producto) {
 
         validarProducto(producto);
@@ -123,6 +167,94 @@ public class ProductoService {
 
     public int obtenerCantidadProductos() {
         return productoRepository.obtenerCantidad();
+    }
+
+    public int obtenerCantidadProductosFisicos() {
+
+        int cantidad = 0;
+
+        for (Producto producto : productoRepository.listarTodos()) {
+
+            if (producto instanceof ProductoFisico) {
+                cantidad++;
+            }
+        }
+
+        return cantidad;
+    }
+
+    public int obtenerCantidadProductosDigitales() {
+
+        int cantidad = 0;
+
+        for (Producto producto : productoRepository.listarTodos()) {
+
+            if (producto instanceof ProductoDigital) {
+                cantidad++;
+            }
+        }
+
+        return cantidad;
+    }
+
+    public int obtenerCantidadProductosActivos() {
+
+        int cantidad = 0;
+
+        for (Producto producto : productoRepository.listarTodos()) {
+
+            if (producto.isActivo()) {
+                cantidad++;
+            }
+        }
+
+        return cantidad;
+    }
+
+    public int obtenerCantidadProductosInactivos() {
+
+        int cantidad = 0;
+
+        for (Producto producto : productoRepository.listarTodos()) {
+
+            if (!producto.isActivo()) {
+                cantidad++;
+            }
+        }
+
+        return cantidad;
+    }
+
+    public Producto obtenerProductoMayorPrecio() {
+
+        Producto mayor = null;
+
+        for (Producto producto : productoRepository.listarTodos()) {
+
+            if (mayor == null
+                    || producto.calcularPrecioFinal() > mayor.calcularPrecioFinal()) {
+
+                mayor = producto;
+            }
+        }
+
+        return mayor;
+    }
+
+    public Producto obtenerProductoMenorPrecio() {
+
+        Producto menor = null;
+
+        for (Producto producto : productoRepository.listarTodos()) {
+
+            if (menor == null
+                    || producto.calcularPrecioFinal() < menor.calcularPrecioFinal()) {
+
+                menor = producto;
+            }
+        }
+
+        return menor;
     }
 
     public double calcularValorTotalInventario() {
